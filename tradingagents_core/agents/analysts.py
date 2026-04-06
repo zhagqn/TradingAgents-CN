@@ -141,7 +141,8 @@ def create_analyst(
     report_key = config["report_key"]
     counter_key = config["counter_key"]
 
-    max_tool_calls = 3
+    MAX_TOOL_CALLS = 3
+    max_tool_calls = MAX_TOOL_CALLS
 
     def analyst_node(state: AgentState) -> dict:
         ticker = state["company_of_interest"]

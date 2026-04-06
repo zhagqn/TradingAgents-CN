@@ -110,7 +110,8 @@ def create_risk_manager(llm: BaseChatModel) -> Callable[[AgentState], dict]:
 
         logger.info("[风控经理] 做出最终决策...")
 
-        max_retries = 2
+        MAX_RETRIES = 2
+        max_retries = MAX_RETRIES
         result = ""
 
         for attempt in range(max_retries + 1):
