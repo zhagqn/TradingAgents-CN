@@ -1,0 +1,45 @@
+# pyproject_core.toml — TradingAgents-CN Core 精简版的最小依赖配置
+# 这是一个参考配置，展示精简版需要的最小依赖集
+# 要使用此配置，重命名为 pyproject.toml 并放在项目根目录
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tradingagents-core"
+version = "0.1.0"
+description = "多智能体股票分析系统 — 精简核心版"
+readme = "README_CORE.md"
+requires-python = ">=3.11"
+dependencies = [
+    # 核心框架 — LangGraph 多智能体编排
+    "langgraph>=0.2",
+    "langchain-openai>=0.2",
+
+    # 数据获取 — 仅免费数据源
+    "akshare>=1.14",
+    "yfinance>=0.2",
+    "pandas>=2.0",
+    "numpy>=1.24",
+
+    # 配置
+    "python-dotenv>=1.0",
+
+    # CLI (可选但推荐)
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115", "uvicorn>=0.30"]
+test = ["pytest>=7.0", "pytest-cov>=4.0"]
+
+[project.scripts]
+tradingagents = "cli_core:main"
+
+[tool.setuptools.packages.find]
+include = ["tradingagents_core*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests_core"]
+python_files = ["test_*.py"]
